@@ -15,6 +15,7 @@ namespace proiect_ASP_NET.Controllers
 
 		public IActionResult Index()
 		{
+			SetAccessRights();
 			return View();
 		}
 
@@ -27,6 +28,15 @@ namespace proiect_ASP_NET.Controllers
 		public IActionResult Error()
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+		}
+
+		private void SetAccessRights()
+		{
+			ViewBag.ShowButtons = false;
+			if (User.IsInRole("Admin"))
+			{
+				ViewBag.ShowButtons = true;
+			}
 		}
 	}
 }
