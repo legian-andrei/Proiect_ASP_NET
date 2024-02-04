@@ -47,6 +47,7 @@ namespace proiect_ASP_NET.Controllers
 			return selectList;
 		}
 
+		// View
 		public IActionResult Index()
 		{
 			var users = from user in _db.Users
@@ -58,6 +59,7 @@ namespace proiect_ASP_NET.Controllers
 			return View();
 		}
 
+		// Show
 		public async Task<ActionResult> Show(string id)
 		{
 			ApplicationUser user = _db.Users.Find(id);
@@ -68,6 +70,7 @@ namespace proiect_ASP_NET.Controllers
 			return View(user);
 		}
 
+		// Edit
 		public async Task<ActionResult> Edit(string id)
 		{
 			ApplicationUser user = _db.Users.Find(id);
@@ -121,6 +124,7 @@ namespace proiect_ASP_NET.Controllers
 			return RedirectToAction("Index");
 		}
 
+		// Delete
 		[HttpPost]
 		public IActionResult Delete(string id)
 		{
