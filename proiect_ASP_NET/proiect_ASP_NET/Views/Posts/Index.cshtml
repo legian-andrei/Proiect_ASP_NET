@@ -1,0 +1,259 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .wrap {
+        width: 95%;
+        margin: 0 auto
+    }
+
+    p {
+        padding-bottom: 16px
+    }
+
+    a:hover,
+    a:focus {
+        color: #e8c000
+    }
+
+    .input-light {
+        background: #f1f1ef;
+        color: #515151
+    }
+
+    .input-dark {
+        background: #454545;
+        color: #ffffff
+    }
+
+    body main {
+        padding: 30px 0 0px;
+    }
+
+    main {
+        padding: 30px 0 58px;
+        overflow-x: hidden;
+        clear: both
+    }
+        main .box {
+            width: 100%;
+            height: 116px;
+            margin: 0 auto 30px;
+            display: block;
+            position: relative;
+            background: #fff
+        }
+
+        main .box_0 {
+            display: block;
+            width: 100%;
+        }
+
+    .container {
+        margin: 0 auto
+    }
+
+    article {
+        margin: 0 auto;
+        max-width: 1250px;
+        padding-bottom: 30px;
+        font-size: 14px;
+        line-height: 26px;
+        text-align: left;
+    }
+
+        article .header {
+            padding: 40px 6% 34px;
+            position: relative;
+            background: #fff
+        }
+
+        article .title {
+            width: calc(100% - 4px);
+            display: inline-block;
+            vertical-align: top;
+            padding-right: 95px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box
+        }
+
+            article .title h1 {
+                width: 100%;
+                padding-bottom: 0px
+            }
+
+
+            article .title .byline {
+                font-size: 12px;
+                letter-spacing: 1px;
+                font-style: italic;
+                color: #888
+            }
+
+                article .title .byline address {
+                    padding-right: 8px;
+                    display: inline-block
+                }
+
+                    article .title .byline address span {
+                        color: #888;
+                        text-decoration: none;
+                    }
+
+        article .header .byline time {
+            padding-left: 8px
+        }
+
+        article .content {
+            background: #fff;
+            padding: 0 6% 48px;
+            overflow: hidden
+        }
+
+            article .content img {
+                width: 114%;
+                height: auto;
+                margin: 0 0 20px -7%;
+                display: block
+            }
+
+            article .content figure.wp-caption {
+                max-width: 100%
+            }
+
+                article .content figure.wp-caption figcaption.wp-caption-text {
+                    text-align: center;
+                    font-style: italic
+                }
+
+            article .content iframe[src*="youtube.com"],
+            article .content iframe[src*="vimeo.com"] {
+                margin: 10px 0 10px -7%
+            }
+
+            article .content blockquote {
+                margin-top: 10px
+            }
+
+            article .content .read-more {
+                margin-top: 20px
+            }
+
+                article .content .read-more a {
+                    font-size: 12px;
+                    letter-spacing: 2px
+                }
+
+                    article .content .read-more a:hover {
+                        background: #a68f21
+                    }
+
+    hr {
+        height: 10px;
+        border: 0;
+        box-shadow: 0 10px 10px -10px #8c8b8b inset;
+    }
+
+</style>
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">proiect_ASP_NET</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span></button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item"> <a class="nav-link text-dark" href="/Home/Index">Home</a> </li>
+                    <li class="nav-item"> <a class="nav-link text-dark" href="/Posts/Index/?page=1">Posts</a> </li>
+                    <li class="nav-item"> <a class="nav-link text-dark" href="/Categories/Index">Categories</a> </li>
+                    @if (ViewBag.AfisareButoane == true)
+                    {
+                        <li class="nav-item"> <a class="nav-link text-dark" href="/Users/Index">View Users</a> </li>
+                    }
+                </ul>
+                <partial name="_LoginPartial" />
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div style="margin-left: 55px;">
+    <h2>Order By:</h2>
+    <a class="btn btn-dark btn-xl" href="/Posts/Index?sortBy=@ViewBag.SortByTitle">Title 	&#8682;</a>
+    <a class="btn btn-dark btn-xl" href="/Posts/Index?sortBy=@ViewBag.SortByTitleDesc">Title &#8681;</a>
+    <a class="btn btn-dark btn-xl" href="/Posts/Index?sortBy=@ViewBag.SortByDate">Date 	&#8682;</a>
+    <a class="btn btn-dark btn-xl" href="/Posts/Index?sortBy=@ViewBag.SortByDateDesc">Date &#8681;</a>
+</div>
+
+<hr>
+
+<div class="d-flex justify-content-center">
+    <a class="btn btn-dark btn-xl" style="margin-bottom: 15px;" href="/Categories/Index/">Show Categories</a>&#10240;&#10240;
+    <br />
+
+    <a class="btn btn-dark btn-xl" style="margin-bottom: 15px;" href="/Posts/New">Add Post</a>
+    <br />
+</div>
+
+@foreach (var post in ViewBag.Posts)
+{
+    <main>
+        <section class="container">
+            <article>
+                <div class="header">
+                    <div class="title">
+                        <h1 style="font: normal 400 24px 'Roboto', Arial, sans-serif;
+                                    padding-bottom: 12px;
+                                    color: #000;
+                                    text-transform: uppercase">
+                            <a href="/Posts/Show/@post.Id">@post.Title</a>
+                        </h1>
+
+                        <div class="byline">
+                            <div style="font-size: 15px;">
+                                @post.Category.CategoryName&#10240;&#10240;|
+                                <time class="entry-date published updated">@post.Date</time>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <hr>
+                    <p>
+                        @post.Content
+                    </p>
+                    <a class="btn btn-light btn-xl" href="/Posts/Show/@post.Id">View Post</a>
+                </div>
+            </article>
+        </section>
+    </main>
+    <hr />
+}
+
+<div>
+    <nav aria-label="Page navigation ">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="@ViewBag.PaginationBaseUrl=1" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+
+            @for (int i = 1; i <= ViewBag.lastPage; i++)
+            {
+                <li class="page-item"> <a class="page-link" href="/Posts/Index/?page=@i">@(i)</a> </li>
+            }
+
+            <li class="page-item">
+                <a class="page-link" href="@ViewBag.PaginationBaseUrl=@(ViewBag.lastPage)" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<br />
+<br />
