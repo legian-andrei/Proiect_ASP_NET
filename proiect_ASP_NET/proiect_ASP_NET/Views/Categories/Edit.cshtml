@@ -1,0 +1,102 @@
+﻿@{
+	ViewBag.Title = "Edit Category";
+}
+
+<style>
+	* {
+		outline: none;
+		border: none;
+		margin: 0px;
+		padding: 0px;
+	}
+
+	#margin {
+		margin-left: 12px;
+		margin-bottom: 20px;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		-o-user-select: none;
+		user-select: none;
+	}
+
+	#text {
+		width: 500px;
+		overflow: hidden;
+		background-color: #FFF;
+		color: #222;
+		font-weight: normal;
+		font-size: 24px;
+		resize: none;
+		line-height: 40px;
+		padding-left: 100px;
+		padding-right: 100px;
+		padding-bottom: 34px;
+		-webkit-border-radius: 12px;
+		border-radius: 12px;
+		-webkit-box-shadow: 0px 2px 14px #000;
+		box-shadow: 0px 2px 14px #000;
+		border-top: 1px solid #FFF;
+		border-bottom: 1px solid #FFF;
+	}
+
+	#title {
+		background-color: transparent;
+		border-bottom: 3px solid black;
+		color: black;
+		font-size: 20px;
+		font-family: Courier, monospace;
+		height: 28px;
+		font-weight: bold;
+		width: 220px;
+	}
+
+	#wrapper {
+		width: 700px;
+		height: auto;
+		font-weight: bold;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 24px;
+		margin-bottom: 100px;
+	}
+</style>
+
+<header>
+	<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+		<div class="container-fluid">
+			<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">proiect_ASP_NET</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span></button>
+			<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+				<ul class="navbar-nav flex-grow-1">
+					<li class="nav-item"> <a class="nav-link text-dark" href="/Home/Index">Home</a> </li>
+					<li class="nav-item"> <a class="nav-link text-dark" href="/Posts/Index/?page=1">Posts</a> </li>
+					<li class="nav-item"> <a class="nav-link text-dark" href="/Categories/Index">Categories</a> </li>
+					@if (ViewBag.AfisareButoane == true)
+					{
+						<li class="nav-item"> <a class="nav-link text-dark" href="/Users/Index">View Users</a> </li>
+					}
+				</ul>
+				<partial name="_LoginPartial" />
+			</div>
+		</div>
+	</nav>
+</header>
+
+<div id="wrapper" style="margin-top: 100px;">
+	<div style="height: 40px; width: 600px; text-align: center; border-radius: 25px; align-self: center;">
+		<h2>@ViewBag.Title</h2>
+	</div>
+
+	<form method="post" action="/Categories/Edit/@ViewBag.Category.Id">
+		<label>Title: </label>
+		<textarea id="text" name="CategoryName" rows="4" style="margin-top: 10px; overflow: hidden; word-wrap: break-word; height: 20px; width:700px; ">@ViewBag.Category.CategoryName</textarea>
+		<br /><br />
+
+		<label style="font-size: 15px;">Description: </label>
+		<textarea placeholder="Enter category description..." id="text" name="Descriere" rows="4" style="margin-top: 10px; overflow: hidden; word-wrap: break-word; resize: none; height: 300px; width:700px; ">@ViewBag.Category.Descriere</textarea>
+		<br /><br />
+
+		<button class="btn btn-outline-dark btn-floating m-1" type="submit">Modify Category!</button>
+	</form>
+</div>
