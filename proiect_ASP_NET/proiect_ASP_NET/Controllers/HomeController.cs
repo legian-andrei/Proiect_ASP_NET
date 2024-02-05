@@ -32,10 +32,10 @@ namespace proiect_ASP_NET.Controllers
 
 		private void SetAccessRights()
 		{
-			ViewBag.ShowButtons = false;
+			ViewBag.AfisareButoane = false;
 			if (User.IsInRole("Admin"))
 			{
-				ViewBag.ShowButtons = true;
+				ViewBag.AfisareButoane = true;
 			}
 		}
 	}
